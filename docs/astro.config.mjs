@@ -12,6 +12,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'HiveSpec',
+      disable404Route: true,
       description: 'Spec-driven delivery lifecycle for AI agent swarms. Claim → Explore → Design → Plan → Implement → Verify → Ship.',
       favicon: '/favicon.svg',
       customCss: ['./src/styles/custom.css'],
