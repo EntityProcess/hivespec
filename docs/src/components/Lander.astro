@@ -58,7 +58,6 @@ const { data } = Astro.props;
         </div>
         <code class="phase-cmd">hs-claim</code>
       </div>
-      <div class="phase-connector"><span class="connector-arrow">&rarr;</span></div>
 
       <div class="phase-card">
         <div class="phase-number">2</div>
@@ -68,7 +67,6 @@ const { data } = Astro.props;
         </div>
         <code class="phase-cmd">hs-explore</code>
       </div>
-      <div class="phase-connector"><span class="connector-arrow">&rarr;</span></div>
 
       <div class="phase-card">
         <div class="phase-number">3</div>
@@ -78,7 +76,6 @@ const { data } = Astro.props;
         </div>
         <code class="phase-cmd">hs-design</code>
       </div>
-      <div class="phase-connector"><span class="connector-arrow">&rarr;</span></div>
 
       <div class="phase-card">
         <div class="phase-number">4</div>
@@ -88,7 +85,6 @@ const { data } = Astro.props;
         </div>
         <code class="phase-cmd">hs-plan</code>
       </div>
-      <div class="phase-connector"><span class="connector-arrow">&rarr;</span></div>
 
       <div class="phase-card">
         <div class="phase-number">5</div>
@@ -98,7 +94,6 @@ const { data } = Astro.props;
         </div>
         <code class="phase-cmd">hs-implement</code>
       </div>
-      <div class="phase-connector"><span class="connector-arrow">&rarr;</span></div>
 
       <div class="phase-card">
         <div class="phase-number">6</div>
@@ -108,7 +103,6 @@ const { data } = Astro.props;
         </div>
         <code class="phase-cmd">hs-verify</code>
       </div>
-      <div class="phase-connector"><span class="connector-arrow">&rarr;</span></div>
 
       <div class="phase-card">
         <div class="phase-number">7</div>
@@ -508,25 +502,35 @@ const { data } = Astro.props;
   }
 
   .phase-flow {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.75rem;
     align-items: stretch;
-    gap: 0;
-    flex-wrap: wrap;
-    justify-content: center;
   }
 
   .phase-card {
     background: var(--surface-1);
     border: 1px solid var(--border-subtle);
     border-radius: 12px;
-    padding: 1.25rem 1rem;
-    flex: 0 1 130px;
+    padding: 1.25rem 0.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 0.5rem;
     transition: all 0.2s;
+    position: relative;
+  }
+
+  .phase-card:not(:last-child)::after {
+    content: '\2192';
+    position: absolute;
+    right: -0.625rem;
+    top: 50%;
+    transform: translate(50%, -50%);
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    z-index: 2;
   }
 
   .phase-card:hover {
@@ -573,32 +577,18 @@ const { data } = Astro.props;
     margin-top: auto;
   }
 
-  .phase-connector {
-    display: flex;
-    align-items: center;
-    padding: 0 0.25rem;
-  }
-
-  .connector-arrow {
-    color: var(--text-muted);
-    font-size: 1.25rem;
-  }
-
-  @media (max-width: 900px) {
+  @media (max-width: 1000px) {
     .phase-flow {
-      gap: 0.5rem;
+      grid-template-columns: repeat(4, 1fr);
     }
-    .phase-connector {
+    .phase-card:not(:last-child)::after {
       display: none;
     }
-    .phase-card {
-      flex: 0 1 calc(33% - 0.5rem);
-    }
   }
 
-  @media (max-width: 500px) {
-    .phase-card {
-      flex: 0 1 calc(50% - 0.5rem);
+  @media (max-width: 600px) {
+    .phase-flow {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
