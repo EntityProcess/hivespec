@@ -1,7 +1,4 @@
 ---
-import type { Props } from '@astrojs/starlight/props';
-
-const { data } = Astro.props;
 ---
 
 <div class="lander-wrapper">
@@ -84,7 +81,7 @@ const { data } = Astro.props;
     </div>
 
     <div class="phase-detail-link">
-      <a href="/phases/claim/">See all 7 phases &rarr;</a>
+      <a href="/docs/phases/claim/">See all 7 phases &rarr;</a>
     </div>
   </section>
 
@@ -412,7 +409,7 @@ const { data } = Astro.props;
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
     padding: 0.625rem 1rem;
-    font-family: var(--sl-font-mono);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.875rem;
   }
 
@@ -769,7 +766,7 @@ const { data } = Astro.props;
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
     padding: 0.625rem 1.25rem;
-    font-family: var(--sl-font-mono);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.875rem;
     margin-bottom: 1.5rem;
   }
