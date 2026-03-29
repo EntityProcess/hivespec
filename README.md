@@ -101,6 +101,13 @@ Full results: [hivespec-evals](https://github.com/EntityProcess/hivespec-evals)
 | [OpenSpec](https://openspec.dev) | Spec format. HiveSpec is compatible |
 | [Agentic Engineering](https://github.com/EntityProcess/agentv/tree/main/plugins/agentic-engineering) | Design-time companion — agent architecture patterns |
 
+## Acknowledgments
+
+HiveSpec builds on ideas and patterns from:
+
+- **[Superpowers](https://github.com/obra/superpowers/)** — Claude Code plugin by Jesse Vincent. HiveSpec's TDD discipline, systematic debugging methodology, verification-before-completion protocol, and code review response patterns draw heavily from Superpowers' skill design.
+- **[OpenSpec](https://openspec.dev)** — Spec format convention. HiveSpec is compatible with OpenSpec's `specs/` directory structure.
+
 ## License
 
 MIT

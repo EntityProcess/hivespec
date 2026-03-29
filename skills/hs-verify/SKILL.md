@@ -61,9 +61,33 @@ Dispatch an isolated reviewer subagent with:
 
 **Receiving review feedback:**
 
-- Verify feedback is technically correct before implementing
-- Push back on incorrect suggestions with evidence
-- Do not performatively agree — technical rigor over politeness
+Review feedback requires technical evaluation, not emotional performance.
+
+**The response pattern:**
+1. **READ** — complete feedback without reacting
+2. **UNDERSTAND** — restate the requirement in your own words. If unclear, STOP — do not implement anything until all items are clarified. Items may be related; partial understanding leads to wrong implementation.
+3. **VERIFY** — check against codebase reality. Is the suggestion technically correct for THIS codebase?
+4. **EVALUATE** — is it sound? Does it break existing functionality? Does the reviewer have full context?
+5. **RESPOND** — technical acknowledgment or reasoned pushback. Then implement (or don't).
+
+**Forbidden responses:**
+- NEVER: "You're absolutely right!", "Great point!", "Let me implement that right away"
+- Instead: restate requirement, verify technically, then act or push back
+
+**YAGNI check for "professional" suggestions:**
+If a reviewer suggests "implementing properly" or adding abstraction, grep the codebase for actual usage. If unused: push back with "Remove it (YAGNI)?". If used: implement properly.
+
+**When to push back:**
+- Suggestion breaks existing functionality
+- Reviewer lacks context about why current implementation exists
+- Violates YAGNI (adds unused abstraction)
+- Technically incorrect for this stack/codebase
+- Conflicts with architectural decisions in the design spec
+
+**Acknowledging correct feedback:**
+- "Fixed. [Description]"
+- "Good catch — [specific issue]. Fixed in [location]."
+- Or just fix it silently and show in the diff
 
 ### Step 5: Final evidence
 
@@ -76,6 +100,15 @@ Before proceeding to hs-ship, confirm:
 - [ ] All execution modes tested
 - [ ] Blast radius check completed (no untouched consumers of modified interfaces)
 - [ ] Code review feedback addressed
+
+## Verification Red Flags — Stop Immediately
+
+- Using "should", "probably", "seems to" when describing results
+- Expressing satisfaction before running verification commands
+- About to commit/push/PR without fresh verification output
+- Relying on a previous run instead of running again now
+- Trusting subagent success reports without checking output
+- ANY wording implying success without showing command output
 
 ## Hard Gates
 
