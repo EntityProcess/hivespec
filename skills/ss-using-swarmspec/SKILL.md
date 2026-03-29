@@ -1,5 +1,5 @@
 ---
-name: hs-using-hivespec
+name: hs-using-swarmspec
 description: >-
   Use when starting any conversation or session to establish the agentic delivery
   lifecycle. Determines which phase skills to invoke and prevents rationalization
@@ -7,7 +7,7 @@ description: >-
   dispatched as a subagent to execute a specific task.
 ---
 
-# Using HiveSpec
+# Using SwarmSpec
 
 ## Overview
 
@@ -20,18 +20,18 @@ If you were dispatched as a subagent to execute a specific task, skip this skill
 ## Lifecycle
 
 ```
-hs-claim → hs-explore → hs-design → hs-plan → hs-implement → hs-verify → hs-ship
+ss-claim → ss-explore → ss-design → ss-plan → ss-implement → ss-verify → ss-ship
 ```
 
 | Phase | Skill | What Happens |
 |---|---|---|
-| Claim | hs-claim | Claim issue, create worktree + branch + draft PR |
-| Explore | hs-explore | Understand the codebase and problem space |
-| Design | hs-design | Brainstorm approaches, write approved spec |
-| Plan | hs-plan | Convert spec into bite-sized implementation plan |
-| Implement | hs-implement | TDD execution with subagent dispatch |
-| Verify | hs-verify | E2E red/green testing, code review, blast radius check |
-| Ship | hs-ship | Mark PR ready, merge, clean up worktree |
+| Claim | ss-claim | Claim issue, create worktree + branch + draft PR |
+| Explore | ss-explore | Understand the codebase and problem space |
+| Design | ss-design | Brainstorm approaches, write approved spec |
+| Plan | ss-plan | Convert spec into bite-sized implementation plan |
+| Implement | ss-implement | TDD execution with subagent dispatch |
+| Verify | ss-verify | E2E red/green testing, code review, blast radius check |
+| Ship | ss-ship | Mark PR ready, merge, clean up worktree |
 
 ## Phase Skip Rules
 
@@ -54,23 +54,23 @@ These thoughts mean STOP — you are rationalizing your way out of a phase:
 | Thought | Reality |
 |---|---|
 | "This is just a simple question" | Questions are tasks. Check the lifecycle. |
-| "I need more context first" | That is what hs-explore does. |
-| "Let me just write the code quickly" | That is what hs-implement does, with TDD. |
+| "I need more context first" | That is what ss-explore does. |
+| "Let me just write the code quickly" | That is what ss-implement does, with TDD. |
 | "I can skip the design for this" | Every project needs a design, regardless of perceived simplicity. |
-| "Tests are passing, we're done" | Unit tests ≠ verified. That is what hs-verify does. |
-| "I'll clean up the PR later" | That is what hs-ship does, with blast radius checks. |
-| "Let me explore the code first" | Use hs-explore — it has structured output. |
-| "I know what needs to change" | Verify with hs-explore. Partial implementations may already exist. |
+| "Tests are passing, we're done" | Unit tests ≠ verified. That is what ss-verify does. |
+| "I'll clean up the PR later" | That is what ss-ship does, with blast radius checks. |
+| "Let me explore the code first" | Use ss-explore — it has structured output. |
+| "I know what needs to change" | Verify with ss-explore. Partial implementations may already exist. |
 
 ## Skill Priority
 
 When multiple skills could apply:
 
-1. **Process skills first** (hs-explore, hs-design) — determine HOW to approach
-2. **Execution skills second** (hs-implement, hs-verify) — guide what to do
+1. **Process skills first** (ss-explore, ss-design) — determine HOW to approach
+2. **Execution skills second** (ss-implement, ss-verify) — guide what to do
 
-"Let's build X" → hs-explore first, then hs-design, then hs-plan.
-"Fix this bug" → hs-explore first, then hs-implement.
+"Let's build X" → ss-explore first, then ss-design, then ss-plan.
+"Fix this bug" → ss-explore first, then ss-implement.
 
 ## Artifact Locations
 

@@ -11,7 +11,7 @@ const { data } = Astro.props;
       <div class="hero-badge">Open Source Protocol</div>
       <h1 class="hero-title">Your agents don't need<br/>more power.<br/>They need a process.</h1>
       <p class="hero-tagline">
-        HiveSpec is a spec-driven delivery lifecycle for AI agent swarms.
+        SwarmSpec is a spec-driven delivery lifecycle for AI agent swarms.
         Each agent follows the same disciplined phases — from claiming an issue to shipping a verified PR.
       </p>
       <div class="hero-actions">
@@ -21,7 +21,7 @@ const { data } = Astro.props;
             <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
           </svg>
         </a>
-        <a href="https://github.com/EntityProcess/hivespec" class="button secondary" target="_blank" rel="noopener">
+        <a href="https://github.com/EntityProcess/swarmspec" class="button secondary" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
             <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
           </svg>
@@ -31,8 +31,8 @@ const { data } = Astro.props;
 
       <div class="install-command">
         <span class="install-prompt">$</span>
-        <code>claude plugin add EntityProcess/hivespec</code>
-        <button class="copy-button" data-copy="claude plugin add EntityProcess/hivespec" title="Copy to clipboard">
+        <code>claude plugin add EntityProcess/swarmspec</code>
+        <button class="copy-button" data-copy="claude plugin add EntityProcess/swarmspec" title="Copy to clipboard">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -56,7 +56,7 @@ const { data } = Astro.props;
           <h3 class="phase-name">Claim</h3>
           <p class="phase-desc">Claim an issue. Read repo guidelines. Set up workspace.</p>
         </div>
-        <code class="phase-cmd">hs-claim</code>
+        <code class="phase-cmd">ss-claim</code>
       </div>
 
       <div class="phase-card">
@@ -65,7 +65,7 @@ const { data } = Astro.props;
           <h3 class="phase-name">Explore</h3>
           <p class="phase-desc">Search the codebase. Find what exists. Find all consumers.</p>
         </div>
-        <code class="phase-cmd">hs-explore</code>
+        <code class="phase-cmd">ss-explore</code>
       </div>
 
       <div class="phase-card">
@@ -74,7 +74,7 @@ const { data } = Astro.props;
           <h3 class="phase-name">Design</h3>
           <p class="phase-desc">Brainstorm approaches. Write a spec. Get approval.</p>
         </div>
-        <code class="phase-cmd">hs-design</code>
+        <code class="phase-cmd">ss-design</code>
       </div>
 
       <div class="phase-card">
@@ -83,7 +83,7 @@ const { data } = Astro.props;
           <h3 class="phase-name">Plan</h3>
           <p class="phase-desc">Break the spec into TDD tasks with exact code targets.</p>
         </div>
-        <code class="phase-cmd">hs-plan</code>
+        <code class="phase-cmd">ss-plan</code>
       </div>
 
       <div class="phase-card">
@@ -92,7 +92,7 @@ const { data } = Astro.props;
           <h3 class="phase-name">Implement</h3>
           <p class="phase-desc">Red &rarr; green &rarr; refactor &rarr; commit. Dispatch subagents.</p>
         </div>
-        <code class="phase-cmd">hs-implement</code>
+        <code class="phase-cmd">ss-implement</code>
       </div>
 
       <div class="phase-card">
@@ -101,7 +101,7 @@ const { data } = Astro.props;
           <h3 class="phase-name">Verify</h3>
           <p class="phase-desc">Run actual commands. E2E checks. Blast radius analysis.</p>
         </div>
-        <code class="phase-cmd">hs-verify</code>
+        <code class="phase-cmd">ss-verify</code>
       </div>
 
       <div class="phase-card">
@@ -110,7 +110,7 @@ const { data } = Astro.props;
           <h3 class="phase-name">Ship</h3>
           <p class="phase-desc">Risk classification. Final verification. Merge. Clean up.</p>
         </div>
-        <code class="phase-cmd">hs-ship</code>
+        <code class="phase-cmd">ss-ship</code>
       </div>
     </div>
   </section>
@@ -162,7 +162,7 @@ const { data } = Astro.props;
 
   <section class="disciplines">
     <div class="section-header">
-      <span class="section-label">What HiveSpec Enforces</span>
+      <span class="section-label">What SwarmSpec Enforces</span>
       <h2 class="section-title">Every phase has a gate</h2>
     </div>
     <div class="discipline-grid">
@@ -174,7 +174,7 @@ const { data } = Astro.props;
           </svg>
         </div>
         <h3>Spec before code</h3>
-        <p>hs-design blocks implementation until a design is written and approved.</p>
+        <p>ss-design blocks implementation until a design is written and approved.</p>
       </div>
       <div class="discipline-card">
         <div class="discipline-icon">
@@ -184,7 +184,7 @@ const { data } = Astro.props;
           </svg>
         </div>
         <h3>Explore before designing</h3>
-        <p>hs-explore finds all consumers of shared interfaces before proposing changes.</p>
+        <p>ss-explore finds all consumers of shared interfaces before proposing changes.</p>
       </div>
       <div class="discipline-card">
         <div class="discipline-icon">
@@ -193,7 +193,7 @@ const { data } = Astro.props;
           </svg>
         </div>
         <h3>Red before green</h3>
-        <p>hs-implement watches tests fail before writing implementation code.</p>
+        <p>ss-implement watches tests fail before writing implementation code.</p>
       </div>
       <div class="discipline-card">
         <div class="discipline-icon">
@@ -203,7 +203,7 @@ const { data } = Astro.props;
           </svg>
         </div>
         <h3>Evidence before claims</h3>
-        <p>hs-verify requires actual command output, not assertions.</p>
+        <p>ss-verify requires actual command output, not assertions.</p>
       </div>
       <div class="discipline-card">
         <div class="discipline-icon">
@@ -213,7 +213,7 @@ const { data } = Astro.props;
           </svg>
         </div>
         <h3>Risk before merge</h3>
-        <p>hs-ship classifies risk and requires confirmation for elevated-risk PRs.</p>
+        <p>ss-ship classifies risk and requires confirmation for elevated-risk PRs.</p>
       </div>
       <div class="discipline-card">
         <div class="discipline-icon">
@@ -224,7 +224,7 @@ const { data } = Astro.props;
           </svg>
         </div>
         <h3>Swarm-ready</h3>
-        <p>Ten agents running HiveSpec concurrently is a swarm that delivers like a team.</p>
+        <p>Ten agents running SwarmSpec concurrently is a swarm that delivers like a team.</p>
       </div>
     </div>
   </section>
@@ -233,7 +233,7 @@ const { data } = Astro.props;
     <div class="section-header">
       <span class="section-label">Compatibility</span>
       <h2 class="section-title">Works with any agent</h2>
-      <p class="section-desc">SKILL.md files. No lock-in. Any agent that reads them can run HiveSpec.</p>
+      <p class="section-desc">SKILL.md files. No lock-in. Any agent that reads them can run SwarmSpec.</p>
     </div>
     <div class="client-grid">
       <div class="client-item">Claude Code</div>
@@ -253,11 +253,11 @@ const { data } = Astro.props;
     <div class="spec-options">
       <div class="spec-card">
         <code class="spec-path">issue body</code>
-        <p>Lightweight. No extra files. The agent reads it during hs-claim.</p>
+        <p>Lightweight. No extra files. The agent reads it during ss-claim.</p>
       </div>
       <div class="spec-card">
         <code class="spec-path">.agents/plans/</code>
-        <p>Written during hs-design. Lives on the branch. Deleted after merge.</p>
+        <p>Written during ss-design. Lives on the branch. Deleted after merge.</p>
       </div>
       <div class="spec-card">
         <code class="spec-path">specs/</code>
@@ -269,25 +269,25 @@ const { data } = Astro.props;
   <section class="cta">
     <div class="cta-content">
       <h2 class="cta-title">Give your agents discipline.</h2>
-      <p class="cta-desc">Install HiveSpec in one command and start shipping with confidence.</p>
+      <p class="cta-desc">Install SwarmSpec in one command and start shipping with confidence.</p>
       <div class="cta-install">
         <span class="install-prompt">$</span>
-        <code>claude plugin add EntityProcess/hivespec</code>
+        <code>claude plugin add EntityProcess/swarmspec</code>
       </div>
       <div class="cta-actions">
         <a href="/getting-started/introduction/" class="button primary">Read the docs</a>
-        <a href="https://github.com/EntityProcess/hivespec" class="button secondary" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/EntityProcess/swarmspec" class="button secondary" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </section>
 
   <footer class="lander-footer">
     <div class="footer-content">
-      <span class="footer-brand">HiveSpec</span>
+      <span class="footer-brand">SwarmSpec</span>
       <span class="footer-sep">&middot;</span>
       <span class="footer-license">MIT License</span>
       <span class="footer-sep">&middot;</span>
-      <a href="https://github.com/EntityProcess/hivespec" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/EntityProcess/swarmspec" class="footer-link" target="_blank" rel="noopener">GitHub</a>
     </div>
   </footer>
 </div>

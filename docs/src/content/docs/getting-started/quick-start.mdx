@@ -1,6 +1,6 @@
 ---
 title: Quick Start
-description: Get HiveSpec running in under a minute.
+description: Get SwarmSpec running in under a minute.
 ---
 
 ## Install
@@ -8,33 +8,33 @@ description: Get HiveSpec running in under a minute.
 ### Claude Code (recommended)
 
 ```bash
-claude plugin add EntityProcess/hivespec
+claude plugin add EntityProcess/swarmspec
 ```
 
 ### Manual Installation
 
-Copy the `skills/` directory from the [HiveSpec repo](https://github.com/EntityProcess/hivespec) to your project:
+Copy the `skills/` directory from the [SwarmSpec repo](https://github.com/EntityProcess/swarmspec) to your project:
 
 ```bash
 # Clone and copy skills
-git clone https://github.com/EntityProcess/hivespec.git /tmp/hivespec
-cp -r /tmp/hivespec/skills/ .claude/skills/hivespec/
+git clone https://github.com/EntityProcess/swarmspec.git /tmp/swarmspec
+cp -r /tmp/swarmspec/skills/ .claude/skills/swarmspec/
 ```
 
 ## Usage
 
-Tell your agent to start the HiveSpec lifecycle on any issue:
+Tell your agent to start the SwarmSpec lifecycle on any issue:
 
 ```
-Claim issue #42 and start the HiveSpec lifecycle.
+Claim issue #42 and start the SwarmSpec lifecycle.
 ```
 
 The agent will follow the phases automatically, skipping phases that aren't needed for the scope of the change.
 
 ## The Swarm
 
-HiveSpec is a single-agent protocol. The swarm emerges from the coordination layer.
+SwarmSpec is a single-agent protocol. The swarm emerges from the coordination layer.
 
-Any agent — Claude, Codex, Copilot, Pi — claims an issue from a shared board (GitHub Projects, Linear, Jira). It runs the HiveSpec lifecycle independently. Ships a PR. Picks up the next issue.
+Any agent — Claude, Codex, Copilot, Pi — claims an issue from a shared board (GitHub Projects, Linear, Jira). It runs the SwarmSpec lifecycle independently. Ships a PR. Picks up the next issue.
 
-Ten agents running HiveSpec concurrently on the same repo is a swarm that delivers like a well-run team. The board is the coordination. HiveSpec is the discipline.
+Ten agents running SwarmSpec concurrently on the same repo is a swarm that delivers like a well-run team. The board is the coordination. SwarmSpec is the discipline.
