@@ -15,9 +15,6 @@ export default defineConfig({
       description: 'Spec-driven delivery lifecycle for AI agent swarms. Claim → Explore → Design → Plan → Implement → Verify → Ship.',
       favicon: '/favicon.svg',
       customCss: ['./src/styles/custom.css'],
-      components: {
-        Hero: './src/components/Hero.astro',
-      },
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/EntityProcess/hivespec' },
       ],
@@ -25,17 +22,17 @@ export default defineConfig({
         {
           label: 'Docs',
           items: [
-            { slug: 'docs' },
-            { slug: 'quick-start' },
+            { label: 'Introduction', link: '/docs/' },
+            { label: 'Quick Start', link: '/docs/quick-start/' },
           ],
         },
         {
           label: 'Phases',
-          autogenerate: { directory: 'phases' },
+          autogenerate: { directory: 'docs/phases' },
         },
         {
           label: 'Reference',
-          autogenerate: { directory: 'reference' },
+          autogenerate: { directory: 'docs/reference' },
         },
       ],
     }),
