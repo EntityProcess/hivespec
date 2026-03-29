@@ -28,11 +28,11 @@ export default defineConfig({
         },
         {
           label: 'Phases',
-          autogenerate: { directory: 'phases' },
+          autogenerate: { directory: 'docs/phases' },
         },
         {
           label: 'Reference',
-          autogenerate: { directory: 'reference' },
+          autogenerate: { directory: 'docs/reference' },
         },
       ],
     }),
