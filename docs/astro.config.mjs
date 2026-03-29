@@ -24,15 +24,18 @@ export default defineConfig({
       sidebar: [
         {
           label: 'Docs',
-          autogenerate: { directory: 'docs' },
+          items: [
+            { slug: 'docs' },
+            { slug: 'quick-start' },
+          ],
         },
         {
           label: 'Phases',
-          autogenerate: { directory: 'docs/phases' },
+          autogenerate: { directory: 'phases' },
         },
         {
           label: 'Reference',
-          autogenerate: { directory: 'docs/reference' },
+          autogenerate: { directory: 'reference' },
         },
       ],
     }),
