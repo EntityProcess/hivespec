@@ -34,6 +34,13 @@ hs-claim → hs-explore → hs-design → hs-plan → hs-implement → hs-verify
 | Ship | hs-ship | Mark PR ready, merge, clean up worktree |
 | Retro | hs-retro | Mine session for human interventions, update skills |
 
+### Support Skills
+
+| Skill | What It Does |
+|---|---|
+| hs-receiving-review | Handle code review feedback with technical rigor, not blind implementation |
+| hs-writing-skills | Create and test new skills using TDD-for-documentation |
+
 ## Phase Skip Rules
 
 Not every change needs every phase:

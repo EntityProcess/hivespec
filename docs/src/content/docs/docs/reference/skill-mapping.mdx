@@ -1,0 +1,44 @@
+---
+title: Skill Mapping
+description: How HiveSpec skills map to Superpowers and OpenSpec.
+---
+
+HiveSpec provides full lifecycle coverage. This mapping shows how its skills relate to [Superpowers](https://github.com/jessevdk/superpowers) and [OpenSpec](https://openspec.dev).
+
+## Superpowers → HiveSpec
+
+| Superpowers Skill | HiveSpec Equivalent | Notes |
+|---|---|---|
+| using-superpowers | hs-using-hivespec | Entry point, skill invocation discipline |
+| brainstorming | hs-design | Collaborative design with approach exploration |
+| test-driven-development | hs-implement | TDD protocol embedded in implementation phase |
+| systematic-debugging | hs-implement | 4-phase debugging methodology in implementation |
+| verification-before-completion | hs-verify | E2E red/green, blast radius, code review |
+| requesting-code-review | hs-verify | Code review dispatched as part of verification |
+| receiving-code-review | hs-receiving-review | Technical evaluation of review feedback |
+| writing-skills | hs-writing-skills | TDD-for-documentation methodology |
+| writing-plans | hs-plan | Implementation plans with exact code per task |
+| executing-plans | hs-implement | Task-by-task execution with subagent dispatch |
+| subagent-driven-development | hs-implement | Subagent dispatch for independent tasks |
+| dispatching-parallel-agents | hs-implement | Parallel subagent execution |
+| using-git-worktrees | hs-claim | Worktree setup as part of issue claiming |
+| finishing-a-development-branch | hs-ship | Merge, cleanup, risk classification |
+
+### HiveSpec-only skills (no Superpowers equivalent)
+
+| HiveSpec Skill | What It Does |
+|---|---|
+| hs-claim | Issue claiming, branch setup, draft PR |
+| hs-explore | Structured codebase exploration before design |
+| hs-retro | Mine session transcripts for skill gaps |
+
+## OpenSpec → HiveSpec
+
+| OpenSpec Concept | HiveSpec Equivalent | Notes |
+|---|---|---|
+| `specs/` directory | `.agents/plans/` | Design specs and implementation plans |
+| Spec format (YAML frontmatter + markdown) | Design spec structure in hs-design | HiveSpec uses markdown, compatible with OpenSpec |
+| Spec-driven development | hs-design → hs-plan | Design first, then plan, then implement |
+| Spec validation | hs-verify | Verify implementation matches spec |
+
+HiveSpec is compatible with OpenSpec — design specs can follow OpenSpec format and live in `specs/` if the project uses OpenSpec conventions.
