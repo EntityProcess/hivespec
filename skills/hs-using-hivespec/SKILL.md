@@ -20,7 +20,7 @@ If you were dispatched as a subagent to execute a specific task, skip this skill
 ## Lifecycle
 
 ```
-hs-claim → hs-explore → hs-design → hs-plan → hs-implement → hs-verify → hs-ship
+hs-claim → hs-explore → hs-design → hs-plan → hs-implement → hs-verify → hs-ship → hs-retro
 ```
 
 | Phase | Skill | What Happens |
@@ -32,6 +32,7 @@ hs-claim → hs-explore → hs-design → hs-plan → hs-implement → hs-verify
 | Implement | hs-implement | TDD execution with subagent dispatch |
 | Verify | hs-verify | E2E red/green testing, code review, blast radius check |
 | Ship | hs-ship | Mark PR ready, merge, clean up worktree |
+| Retro | hs-retro | Mine session for human interventions, update skills |
 
 ## Phase Skip Rules
 
