@@ -57,7 +57,10 @@ Dispatch an isolated reviewer subagent with:
 - The diff (`git diff main...HEAD`)
 - The design spec (if one exists)
 - The implementation plan (if one exists)
-- Instructions to review for spec compliance first, then code quality
+- `hs-implement/references/spec-reviewer-prompt.md` for spec compliance review
+- `hs-implement/references/code-quality-reviewer-prompt.md` for code quality review (includes industry alignment and iteration cruft checks)
+
+Review spec compliance first, then code quality.
 
 **Receiving review feedback:**
 
