@@ -1,0 +1,41 @@
+# AgentV Evaluation Targets for HiveSpec
+# "grader" is the LLM used for scoring rubrics.
+
+targets:
+  # ── Grader (LLM-as-judge) ──────────────────────────────────────────
+  - name: grader
+    provider: gemini
+    model: gemini-3-flash-preview
+    api_key: ${{ GOOGLE_GENERATIVE_AI_API_KEY }}
+
+  # ── LLM targets (direct model access) ─────────────────────────────
+  - name: gemini-flash
+    provider: gemini
+    model: gemini-3-flash-preview
+    api_key: ${{ GOOGLE_GENERATIVE_AI_API_KEY }}
+    grader_target: grader
+
+  - name: gemini-llm
+    provider: gemini
+    api_key: ${{ GOOGLE_GENERATIVE_AI_API_KEY }}
+    model: ${{ GEMINI_MODEL_NAME }}
+    grader_target: grader
+
+  - name: azure-llm
+    provider: azure
+    endpoint: ${{ AZURE_OPENAI_ENDPOINT }}
+    api_key: ${{ AZURE_OPENAI_API_KEY }}
+    model: ${{ AZURE_DEPLOYMENT_NAME }}
+    version: ${{ AZURE_OPENAI_API_VERSION }}
+    grader_target: grader
+
+  # ── Agent targets ───────────────────────────────────────────────────
+  - name: claude
+    provider: claude
+    grader_target: grader
+    log_format: json
+
+  - name: claude-sdk
+    provider: claude-sdk
+    grader_target: grader
+    log_format: json
