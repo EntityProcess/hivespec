@@ -21,13 +21,20 @@ Must have passing verification evidence from hs-verify before shipping. If no ve
 
 ### Step 1: Final verification gate
 
-Run the full check chain one last time:
+Check whether the repo's git prepush hooks already run build/test/lint:
+
+```bash
+# Check for prepush hook configuration (e.g., .husky/pre-push, prek.toml, lefthook.yml, lint-staged)
+```
+
+**If prepush hooks cover build/test/lint:** skip the manual run — `git push` in Step 3 will enforce it. Proceed to blast radius check.
+**If no prepush hooks (or partial coverage):** run the full check chain manually:
 
 ```bash
 bun run build && bun run test && bun run lint
 ```
 
-All must pass with output as evidence. Do not skip this even if hs-verify ran recently — code may have changed since.
+All must pass. If any fails, fix it before proceeding.
 
 ### Step 2: Final blast radius check
 

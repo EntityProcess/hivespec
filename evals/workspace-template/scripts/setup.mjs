@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+/**
+ * Workspace before_all hook: copy hivespec skills into the workspace
+ * for agent discovery. Receives workspace_path via stdin JSON from AgentV.
+ */
+
+import { execSync } from 'node:child_process';
+import { cpSync, mkdirSync, readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
+
+// Read workspace_path from stdin (provided by AgentV orchestrator)
+let workspacePath;
+try {
+  const stdin = readFileSync(0, 'utf8');
+  const context = JSON.parse(stdin);
+  workspacePath = context.workspace_path;
+} catch {
+  workspacePath = process.cwd();
+}
+
+// Resolve repo root from cwd (eval dir is inside the repo)
+let repoRoot;
+try {
+  repoRoot = execSync('git rev-parse --show-toplevel', {
+    encoding: 'utf8',
+  }).trim();
+} catch {
+  console.error('Failed to resolve repo root from cwd:', process.cwd());
+  process.exit(1);
+}
+
+console.log(`Workspace: ${workspacePath}`);
+console.log(`Repo root: ${repoRoot}`);
+
+// Copy to skill discovery directories in the workspace
+// Each provider discovers skills from a different path:
+//   Claude CLI: .claude/skills/
+//   Pi CLI / Pi Coding Agent: .agents/skills/
+//   Codex: .agents/skills/ or .codex/skills/
+const skillDirs = [
+  join(workspacePath, '.claude', 'skills'),
+  join(workspacePath, '.agents', 'skills'),
+  join(workspacePath, '.pi', 'skills'),
+];
+for (const dir of skillDirs) {
+  mkdirSync(dir, { recursive: true });
+}
+
+// Copy all hivespec skills from the repo root's skills/ directory
+const repoSkillsDir = join(repoRoot, 'skills');
+const skillNames = readdirSync(repoSkillsDir);
+
+for (const name of skillNames) {
+  const src = join(repoSkillsDir, name);
+  for (const dir of skillDirs) {
+    cpSync(src, join(dir, name), { recursive: true });
+  }
+  console.log(`Copied ${name}`);
+}
+
+for (const dir of skillDirs) {
+  console.log(`Skills in ${dir}: ${readdirSync(dir).join(', ')}`);
+}
+
+// Initialize git repo in workspace so ship/claim tests can use git commands
+try {
+  execSync('git init && git add -A && git commit -m "initial commit"', {
+    cwd: workspacePath,
+    encoding: 'utf8',
+    stdio: 'pipe',
+  });
+  execSync('git checkout -b feat/42-add-priority', {
+    cwd: workspacePath,
+    encoding: 'utf8',
+    stdio: 'pipe',
+  });
+  console.log('Git repo initialized with feat branch');
+} catch (e) {
+  console.error('Git init failed:', e.message);
+}

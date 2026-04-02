@@ -1,0 +1,14 @@
+# prek — pre-push hook runner
+# Runs build, test, and lint before every `git push`
+
+[[hooks.pre-push]]
+name = "build"
+run = "bun run build"
+
+[[hooks.pre-push]]
+name = "test"
+run = "bun run test"
+
+[[hooks.pre-push]]
+name = "lint"
+run = "bun run lint"

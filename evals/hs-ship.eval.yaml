@@ -1,0 +1,81 @@
+description: Evaluates that hs-ship detects prepush hooks and adjusts the verification gate accordingly
+
+workspace:
+  template: ./workspace-template
+  hooks:
+    before_all:
+      command:
+        - node
+        - "{{workspace_path}}/scripts/setup.mjs"
+
+input:
+  - role: user
+    content:
+      - type: file
+        value: "/skills/hs-ship/SKILL.md"
+
+tests:
+  - id: skips-verification-gate-with-prepush-hooks
+    criteria: Agent skips redundant build/test/lint before push when prepush hooks cover it
+    input:
+      - role: user
+        content: |
+          Verification is complete — E2E red/green passed, blast radius checked,
+          code review done. Time to ship. Check whether the repo has prepush hooks
+          before deciding what to run at the final verification gate.
+    assertions:
+      - type: rubrics
+        criteria:
+          - Detects prek.toml (or other prepush hook config) in the workspace
+          - Skips running build/test/lint manually at the final verification gate
+          - Explains that git push will enforce build/test/lint via hooks
+          - Proceeds to push and mark ready without redundant manual checks
+
+  - id: runs-verification-gate-without-hooks
+    criteria: Agent runs build/test/lint at the verification gate when no hooks exist
+    input:
+      - role: user
+        content: |
+          Verification is complete — E2E red/green passed, blast radius checked,
+          code review done. Time to ship. Note: this repo has no git hooks configured —
+          there is no .husky/, no prek.toml, no lefthook.yml, and no lint-staged config.
+    assertions:
+      - type: rubrics
+        criteria:
+          - Notes the absence of prepush hooks
+          - Runs or recommends running build, test, and lint before pushing
+          - Does not skip the verification gate when no hooks enforce it
+          - Shows or expects command output as evidence
+
+  - id: requires-verification-before-shipping
+    criteria: Agent refuses to ship without hs-verify evidence
+    input:
+      - role: user
+        content: |
+          I've finished implementing the priority field. The code changes are done.
+          Ship it — I haven't run any tests yet but I'm confident it works.
+    assertions:
+      - type: rubrics
+        criteria:
+          - Does not agree to merge or push without verification
+          - Insists on running hs-verify or equivalent verification first
+          - Explains that confidence is not a substitute for verification evidence
+          - References the hard gate requiring passing verification before shipping
+
+  - id: risk-classification
+    criteria: Agent correctly classifies breaking vs docs-only changes
+    input:
+      - role: user
+        content: |
+          Here is what the PR changes:
+          - Adds a required `priority` field to the Task interface (breaking change)
+          - Modifies the API response format in src/api/index.ts to include priority
+          - All tests pass and verification is complete.
+
+          Should I auto-merge this or get review first?
+    assertions:
+      - type: rubrics
+        criteria:
+          - Classifies this as elevated risk due to breaking interface or API changes
+          - Recommends review or explicit confirmation before merging
+          - Does not recommend auto-merge for breaking changes

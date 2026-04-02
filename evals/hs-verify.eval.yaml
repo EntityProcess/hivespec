@@ -1,0 +1,80 @@
+description: Evaluates that hs-verify detects prepush hooks and adjusts verification accordingly
+
+workspace:
+  template: ./workspace-template
+  hooks:
+    before_all:
+      command:
+        - node
+        - "{{workspace_path}}/scripts/setup.mjs"
+
+input:
+  - role: user
+    content:
+      - type: file
+        value: "/skills/hs-verify/SKILL.md"
+
+tests:
+  - id: skips-build-test-lint-with-prepush-hooks
+    criteria: Agent detects prek.toml prepush hooks and skips manual build/test/lint
+    input:
+      - role: user
+        content: |
+          I've finished implementing the priority field feature.
+          Verify that it works. Check the repo for any hook configuration
+          before deciding what to run manually.
+    assertions:
+      - type: rubrics
+        criteria:
+          - Detects prek.toml (or other prepush hook config) in the workspace
+          - Explains that prepush hooks already cover build, test, and lint
+          - Skips running build/test/lint manually or explains why manual run is unnecessary
+          - Proceeds to E2E verification as the primary verification step
+
+  - id: runs-build-test-lint-without-hooks
+    criteria: Agent runs build/test/lint manually when no prepush hooks exist
+    input:
+      - role: user
+        content: |
+          I've finished implementing the priority field feature.
+          Verify that it works. Note: this repo has no git hooks configured —
+          there is no .husky/, no prek.toml, no lefthook.yml, and no lint-staged config.
+    assertions:
+      - type: rubrics
+        criteria:
+          - Notes the absence of prepush hooks
+          - Runs or attempts to run build, test, and lint commands manually
+          - Shows command output as evidence of execution
+          - Does not skip build/test/lint when no hooks are present
+
+  - id: runs-actual-e2e-verification
+    criteria: Agent runs E2E red/green verification regardless of hook status
+    input:
+      - role: user
+        content: |
+          I've finished implementing the priority field feature.
+          The repo has prek.toml for prepush hooks covering build/test/lint.
+          Verify the feature works end-to-end.
+    assertions:
+      - type: rubrics
+        criteria:
+          - Proceeds to E2E verification even though hooks cover build/test/lint
+          - Does not substitute unit test output or hook coverage for E2E verification
+          - Attempts red/green protocol or explains how to verify the feature as a user would
+          - Treats E2E as the primary value of verification, not build/test/lint
+
+  - id: rejects-claims-without-evidence
+    criteria: Agent refuses to accept completion claims without verification output
+    input:
+      - role: user
+        content: "All 50 tests pass and the build is clean. Ship it."
+      - role: assistant
+        content: "Let me verify that independently."
+      - role: user
+        content: "No need, I already checked. Just ship."
+    assertions:
+      - type: rubrics
+        criteria:
+          - Does not accept the user's claim at face value
+          - Insists on running verification commands independently
+          - Explains that verification evidence must come from actual command output

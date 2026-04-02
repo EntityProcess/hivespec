@@ -19,15 +19,23 @@ Prove the implementation works before claiming completion. E2E red/green testing
 
 ## Process
 
-### Step 1: Build, test, lint
+### Step 1: Check for prepush hooks, then build/test/lint if needed
 
-Run the full check chain and capture the output:
+Before running build/test/lint manually, check whether the repo's git prepush hooks already cover them:
+
+```bash
+# Check for prepush hook configuration (e.g., .husky/pre-push, prek.toml, lefthook.yml, lint-staged)
+# If hooks run build + test + lint on push, skip to Step 2 — the push will catch regressions.
+```
+
+**If prepush hooks cover build/test/lint:** skip this step — `git push` will enforce it.
+**If no prepush hooks (or partial coverage):** run the full check chain manually and capture output:
 
 ```bash
 bun run build && bun run test && bun run lint
 ```
 
-All three must pass. If any fails, fix it before proceeding.
+All must pass. If any fails, fix it before proceeding.
 
 ### Step 2: E2E red/green protocol
 
@@ -96,9 +104,7 @@ If a reviewer suggests "implementing properly" or adding abstraction, grep the c
 
 Before proceeding to hs-ship, confirm:
 
-- [ ] Build passes (with output)
-- [ ] All tests pass (with output showing test count)
-- [ ] Lint passes (with output)
+- [ ] Build/test/lint passes (either via prepush hooks or manual run, with output)
 - [ ] E2E red/green completed (with evidence of both states)
 - [ ] All execution modes tested
 - [ ] Blast radius check completed (no untouched consumers of modified interfaces)
@@ -115,7 +121,7 @@ Before proceeding to hs-ship, confirm:
 
 ## Hard Gates
 
-- Must run build, tests, and lint before claiming completion
+- Build, tests, and lint must pass before claiming completion (via prepush hooks or manual run)
 - Must have verification command output as evidence
-- E2E must show red-then-green (not just green)
+- E2E must show red-then-green (not just green) — this is the primary value of hs-verify, since unit tests and hooks cannot cover manual E2E scenarios
 - Must check blast radius for any change to types, interfaces, or shared utilities
